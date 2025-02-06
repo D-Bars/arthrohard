@@ -1,3 +1,12 @@
+/* COLORS */
+:root{
+    --primary-color: #060606;
+    --accent-color: #AB303C;
+    --supporting-color: #30AB4C;
+    --bcgr-color: #F6F6F6;
+}
+/* COLORS */
+
 /*BASIC*/
 
 @font-face {
