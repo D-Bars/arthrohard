@@ -1,7 +1,7 @@
 /* COLORS */
 :root {
     --primary-color: #060606;
-    --accent-color: #AB303C;
+    --accent-color: #AD4844;
     --supporting-color: #30AB4C;
     --bcgr-color: #F6F6F6;
 }
@@ -56,7 +56,7 @@
     }
 }
 
-.hover__underline__box{
+.hover__underline__box {
     position: relative;
     display: inline-flex;
     flex-direction: column;
@@ -64,7 +64,7 @@
     overflow: hidden;
 }
 
-.hover__underline__box .hover__underline__top__el{
+.hover__underline__box .hover__underline__top__el {
     padding-bottom: 0.8vh;
 }
 
@@ -82,12 +82,12 @@
 }
 
 
-.wrapper__img{
+.wrapper__img {
     position: relative;
     width: 20%;
 }
 
-.wrapper__img img{
+.wrapper__img img {
     position: relative;
     width: 100%;
     height: 100%;
@@ -95,38 +95,39 @@
     z-index: 2;
 }
 
-.molecular__box{
+.molecular__box {
     display: flex;
     position: absolute;
     width: 100%;
     justify-content: space-between;
     bottom: 0;
+    overflow: hidden;
 }
 
-.molecular__box .molecular{
+.molecular__box .molecular {
     width: 25%;
     position: relative;
     z-index: 1;
 }
 
-.molecular__box__green .molecular__left{
+.molecular__box__green .molecular__left {
     transform: rotate(-15deg);
     left: 1vw;
     bottom: -2vw;
 }
 
-.molecular__box__green .molecular__right{
+.molecular__box__green .molecular__right {
     top: 0vw;
     right: -1vw;
     transform: rotate(20deg);
 }
 
-.molecular__box__neutral .molecular__left{
+.molecular__box__neutral .molecular__left {
     bottom: 0vw;
     right: 4vw;
 }
 
-.molecular__box__neutral .molecular__right{
+.molecular__box__neutral .molecular__right {
     transform: rotate(20deg);
     left: 4vw;
     top: -4vw;
@@ -181,10 +182,6 @@ body {
     overflow-y: auto;
     background-color: #FFF;
     box-sizing: unset;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 5vw;
 }
 
 a {
@@ -243,3 +240,341 @@ nav {
 }
 
 /*BASIC*/
+
+/* ============================= HEADER ============================= */
+
+header {
+    position: relative;
+    width: 100%;
+    padding-bottom: 3vw;
+    background-color: var(--bcgr-color);
+}
+
+.header__line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    padding: 2vw 10%;
+    display: flex;
+    align-items: center;
+    gap: 15%;
+    background-color: #FFF;
+    box-shadow: 2px 0px 8px #000;
+    z-index: 999;
+}
+
+@media screen and (max-width: 800px) {
+    .header__line {
+        box-shadow: unset;
+        width: 90%;
+        padding: 2vw 5%;
+        background-color: var(--bcgr-color);
+    }
+}
+
+.header__logo__wrapper {
+    width: 20%;
+    height: 1.5vw;
+    overflow: hidden;
+}
+
+.header__logo__wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 800px) {
+    .header__logo__wrapper {
+        width: 80%;
+        height: 8vw;
+    }
+}
+
+.header__menu__wrapper {
+    width: 65%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.burger__menu {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .burger__menu {
+        display: block;
+        position: fixed;
+        top: 1vw;
+        right: 1vw;
+        width: 10vw;
+        height: auto;
+        z-index: 999;
+    }
+
+    .burger__menu img {
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+.header__menu__box {
+    width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+    .header__menu__box {
+        display: flex;
+        position: fixed;
+        flex-direction: column;
+        align-items: center;
+        width: 100vw;
+        top: -100dvh;
+        left: 0;
+        max-height: 100dvh;
+        z-index: 993;
+    }
+
+    .header__menu__box .hover__underline {
+        background-color: #FFF;
+    }
+}
+
+.header__menu__items__box {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    gap: 3%;
+    align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+    .header__menu__items__box {
+        position: relative;
+        flex-direction: column;
+        margin-top: 14vw;
+        width: 90%;
+        gap: 5vw;
+        padding: 15vw 0;
+        background-color: var(--accent-color);
+        z-index: 994;
+    }
+}
+
+.header__menu__box li {
+    font-size: 1vw;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 800px) {
+    .header__menu__box li {
+        font-size: 5vw;
+        color: #FFF;
+    }
+}
+
+.header__mask {
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .header__mask {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100dvh;
+        background-color: rgb(254, 254, 254, 0.7);
+    }
+}
+
+.header__center {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 5vw 10%;
+    background-color: var(--bcgr-color);
+}
+
+@media screen and (max-width: 800px) {
+    .header__center {
+        width: 90%;
+        padding: 10vw 5%;
+        gap: 5vw;
+        margin-top: 10vw;
+    }
+}
+
+.header__center__content__box {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    z-index: 2;
+}
+
+@media screen and (max-width: 800px) {
+    .header__center__content__box {
+        flex-direction: column;
+        gap: 7vw;
+    }
+}
+
+.header__wrapper__img {
+    width: 45%;
+    height: auto;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 800px) {
+    .header__wrapper__img {
+        width: 100%;
+    }
+}
+
+.header__wrapper__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header__content__box {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+@media screen and (max-width: 800px) {
+    .header__content__box {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.header__center h1 {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 4vw;
+    font-weight: 800;
+    color: #000;
+}
+
+@media screen and (max-width: 800px) {
+    .header__center h1 {
+        display: none;
+    }
+}
+
+.header__center h1 span {
+    color: var(--accent-color);
+}
+
+.header__content__text__box {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw;
+}
+
+@media screen and (max-width: 800px) {
+    .header__content__text__box {
+        width: 100%;
+        gap: 5vw;
+        align-items: center;
+    }
+}
+
+.header__title {
+    font-size: 2vw;
+    font-weight: 600;
+}
+
+@media screen and (max-width: 800px) {
+    .header__title {
+        font-size: 6vw;
+    }
+}
+
+.header__description {
+    font-size: 1.1vw;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 800px) {
+    .header__description {
+        font-size: 4.5vw;
+    }
+}
+
+.header__btn {
+    text-align: center;
+    width: 30%;
+    background-color: var(--supporting-color);
+    color: #FFF;
+    font-weight: 800;
+    transition: .4s;
+}
+
+@media screen and (max-width: 800px) {
+    .header__btn {
+        display: none;
+    }
+}
+
+.header__btn:hover {
+    box-shadow: 0px 0px 8px var(--supporting-color);
+    text-shadow: 0px 0px 5px #FFF;
+}
+
+.header__btn a {
+    display: block;
+    width: 100%;
+    padding: 0.5vw 0;
+}
+
+.header__molecular__box .header__molecular>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header__molecular__box {
+    left: 0;
+}
+
+@media screen and (max-width: 800px) {
+    .header__molecular__box {
+        bottom: -25vw;
+    }
+}
+
+.header__molecular {
+    position: relative;
+    width: 13%;
+}
+
+@media screen and (max-width: 800px) {
+    .header__molecular {
+        width: 20%;
+    }
+}
+
+.header__molecular__left {
+    bottom: -8vw;
+    transform: rotate(80deg);
+}
+
+.header__molecular__right {
+    right: -2vw;
+    bottom: 2vw;
+    transform: rotate(-48deg);
+}
+
+
+
+/* ============================= HEADER ============================= */
