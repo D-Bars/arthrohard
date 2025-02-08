@@ -12,7 +12,7 @@
 
 @keyframes hoverUnderline {
     0% {
-        bottom: -0.2vh;
+        bottom: -0.3vh;
         left: 50%;
         width: 1vw;
     }
@@ -84,7 +84,6 @@
 
 .wrapper__img {
     position: relative;
-    width: 20%;
 }
 
 .wrapper__img img {
@@ -101,7 +100,6 @@
     width: 100%;
     justify-content: space-between;
     bottom: 0;
-    overflow: hidden;
 }
 
 .molecular__box .molecular {
@@ -578,3 +576,104 @@ header {
 
 
 /* ============================= HEADER ============================= */
+
+/* ============================= ADVANTAGES ============================= */
+
+.advantages__block{
+    width: 80%;
+    padding: 0 10%;
+    padding-bottom: 3vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bcgr-color);
+    gap: 5vw;
+}
+
+.advantages__block h2{
+    font-size: 2vw;
+    font-weight: 600;
+}
+
+.advantages__items__block{
+    width: 100%;
+    display: flex;
+    gap: 12.5%;
+}
+
+.advantages__items__box{
+    width: 25%;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vw;
+}
+
+.advantages__item__title{
+    font-size: 1.3vw;
+    font-weight: 600;
+}
+
+.advantages__item__description{
+    font-size: 1vw;
+}
+
+.advantages__item__wrapper__img{
+    width: 100%;
+    height: 15vw;
+}
+
+.advantages__item__wrapper__img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+}
+
+.advantages__item__wrapper__img .hover__underline__top__el{
+    padding-bottom: 1vw;
+}
+
+.advantages__item__wrapper__img__box{
+    display: flex;
+    flex-direction: row !important;
+    gap: 6%;
+    position: absolute;
+    bottom: 0;
+}
+
+.advantages__item__wrapper__img__box img{
+    width: 47.5%;
+    height: 100%;
+}
+
+.advantages__item__description__box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+}
+
+.advantages__item__description__item{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 2vw;
+}
+
+.advantages__desciprion__num{
+    font-weight: 800;
+    border-radius: 50%;
+    background-color: #FFF;
+    padding: 1vw 1.3vw;
+    box-shadow: 0 0 5px #000;
+}
+
+.advantages__item__description__item span{
+    font-size: 1vw;
+    font-weight: 600;
+}
+
+/* ============================= ADVANTAGES ============================= */
