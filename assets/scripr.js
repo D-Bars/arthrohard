@@ -79,7 +79,7 @@ window.addEventListener('DOMContentLoaded', () => {
         dog.style.transform = `translateX(${moveX}vw)`;
     }
 
-    const observerOptions = {
+    const observerParallaxOptions = {
         root: null,
         threshold: 0.2  
     };
@@ -92,7 +92,65 @@ window.addEventListener('DOMContentLoaded', () => {
                 window.removeEventListener("scroll", handleParallax);
             }
         });
-    }, observerOptions);
+    }, observerParallaxOptions);
 
     observer.observe(wrapper);
 });
+
+// API get products
+
+const triggerLoadApiItems = document.getElementById("items__api__trigger");
+const itemApi = document.querySelector(".item__api");
+const itemsApiCatalog = document.querySelector(".items__api__catalog");
+let limitIemsApi = document.getElementById("items__api__quantity__select").value;
+
+function changeItemsApiLimit(select){
+    limitIemsApi = select.value;
+    fetchData();
+}
+
+const isLoading = {};
+isLoading.loaded = false;
+
+async function fetchData() {
+    if (isLoading.loaded) return;
+    isLoading.loaded = true;
+
+    try {
+        const response = await fetch(`https://brandstestowy.smallhost.pl/api/random?pageNumber=1&pageSize=${limitIemsApi}`);
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+        const data = await response.json();
+        substituteData(data);
+        // console.log(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }finally{
+        isLoading.loaded = false;
+    }
+}
+
+function substituteData (data) {
+    data = data.data;
+    data.map((current) => {
+        let itemApiClone = itemApi.cloneNode(true);
+        itemsApiCatalog.appendChild(itemApiClone);
+    })
+}
+
+
+const observerApiOptions = {
+    root: null,
+    threshold: 0.2  
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            fetchData();
+        }
+    });
+}, observerApiOptions);
+
+observer.observe(triggerLoadApiItems);

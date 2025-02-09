@@ -1091,3 +1091,74 @@ header {
     }
 }
 /* ============================= DESCRIPTION PRODUCT ============================= */
+
+/* ============================= DESCRIPTION PRODUCT ============================= */
+
+.items__api__block{
+    width: 80%;
+    padding: 4vw 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4vw;
+    background-color: var(--bcgr-color);
+}
+
+.items__api__control__block{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.items__api__control__name{
+    font-size: 1vw;
+    font-weight: 600;
+    padding: 0.5vw;
+    background-color: #FFF;
+    color: #000;
+    outline: 1px solid var(--accent-color);
+    outline-offset: 1px;
+}
+
+#items__api__quantity__select{
+    font-size: 1.1vw;
+    font-weight: 600;
+    padding: 0.5vw 1vw;
+    color: #FFF;
+    background-color: var(--accent-color);
+}
+
+.items__api__catalog{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vw 5%;
+}
+
+.items__api__catalog .item__api{
+    display: flex;
+}
+
+.item__api{
+    width: 21.25%;
+    height: 15vw;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5vw;
+    background-color: #BEBEBE;
+    font-size: 1.5vw;
+    font-weight: 600;
+}
+
+#items__api__trigger{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1vw;
+    opacity: 0;
+}
+
+/* ============================= DESCRIPTION PRODUCT ============================= */
