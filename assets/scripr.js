@@ -4,14 +4,10 @@ class ModalWindow {
         this.mainBox = this.modalTrigger.parentElement;
         this.modalWrapper = this.mainBox.querySelector('[modal_wrapper]');
         this.modalMask = this.modalWrapper.querySelector('[mask]');
-        this.isModalOpen = false;
 
         this.triggerHideModal = [this.modalMask];
 
         this.addOnClick(this.modalTrigger, () => this.modalShow());
-        if(this.isModalOpen){
-            this.addHideTriggers(this.modalTrigger);
-        }
         this.addHideTriggers(this.triggerHideModal);
     }
 
@@ -40,13 +36,11 @@ class ModalWindow {
     modalShow() {
         this.modalWrapper.style.transition = 'top 0.5s ease';
         this.modalWrapper.style.top = '0vh';
-        this.isModalOpen = true;
     }
 
     modalHide() {
         this.modalWrapper.style.transition = 'top 0.5s ease';
         this.modalWrapper.style.top = '-100vh';
-        this.isModalOpen = false;
     }
 }
 
@@ -58,6 +52,37 @@ const triggersMenuItems = () => {
     menuModalTrigger.addHideTriggers(menuItems);
 };
 triggersMenuItems();
+
+
+// underline menu item
+
+const isMobile = window.innerWidth < 800;
+
+if (!isMobile) {
+  const sectionIds = ["advantages", "drug", "products"];
+  const sectionsToObserve = sectionIds
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  const observerSections = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const sectionId = entry.target.getAttribute("id");
+      const menuItem = document.querySelector(`nav ul li a[href="#${sectionId}"]`)?.closest('.hover__underline__trigger');
+
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.hover__underline__trigger').forEach(item => {
+          item.classList.remove('active__menu__link');
+        });
+
+        menuItem?.classList.add('active__menu__link');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  sectionsToObserve.forEach(section => {
+    observerSections.observe(section);
+  });
+}
 
 //parallax
 
@@ -99,58 +124,125 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // API get products
 
-const triggerLoadApiItems = document.getElementById("items__api__trigger");
-const itemApi = document.querySelector(".item__api");
-const itemsApiCatalog = document.querySelector(".items__api__catalog");
-let limitIemsApi = document.getElementById("items__api__quantity__select").value;
+  const triggerLoadApiItems = document.getElementById("items__api__trigger");
+  const itemApi = document.querySelector(".item__api");
+  const itemsApiCatalog = document.querySelector(".items__api__catalog");
+  const selectElement = document.getElementById("items__api__quantity__select");
+  let limitItemsApi = selectElement.value;
 
-function changeItemsApiLimit(select){
-    limitIemsApi = select.value;
-    fetchData();
+  let currentPage = 1;
+  let pageSize = parseInt(limitItemsApi, 10);
+
+  let isLoading = false;
+
+  function substituteData(data) {
+    const items = data.data; 
+
+    items.forEach((current) => {
+        let itemApiClone = itemApi.cloneNode(true);
+        itemApiClone.addEventListener("click", function () {
+            modalApiItems.openWithElement(this);
+        });
+
+        itemApiClone.setAttribute("data-id", current.id);
+        itemApiClone.setAttribute("data-text", current.text);
+
+        const mapping = {
+            ".item__api__id__num": current.id
+        };
+
+        Object.keys(mapping).forEach(selector => {
+            const element = itemApiClone.querySelector(selector);
+            if (element) {
+                element.textContent = mapping[selector];
+            }
+        });
+
+        itemsApiCatalog.appendChild(itemApiClone); 
+    });
+    itemsApiCatalog.appendChild(triggerLoadApiItems);
 }
 
-const isLoading = {};
-isLoading.loaded = false;
+  async function changeItemsApiLimit(select) {
+    limitItemsApi = select.value;
+    pageSize = parseInt(limitItemsApi, 10);
+    currentPage = 1;
+    itemsApiCatalog.innerHTML = "";
+    fetchData();
+  }
 
-async function fetchData() {
-    if (isLoading.loaded) return;
-    isLoading.loaded = true;
+  selectElement.addEventListener("change", function() {
+    changeItemsApiLimit(this);
+  });
 
+  async function fetchData() {
+    if (isLoading) return;
+    isLoading = true;
     try {
-        const response = await fetch(`https://brandstestowy.smallhost.pl/api/random?pageNumber=1&pageSize=${limitIemsApi}`);
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-        const data = await response.json();
-        substituteData(data);
-        // console.log(data);
+      const response = await fetch(`https://brandstestowy.smallhost.pl/api/random?pageNumber=${currentPage}&pageSize=${pageSize}`);
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      substituteData(data);
+      currentPage++;
     } catch (error) {
-        console.error('Error:', error);
-    }finally{
-        isLoading.loaded = false;
+      console.error("Error:", error);
+    } finally {
+      isLoading = false;
+    }
+  }
+  
+  const observerApiOptions = {
+    root: null,
+    threshold: 0.2  
+  };
+
+  const observerApiCatalog = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        fetchData();
+      }
+    });
+  }, observerApiOptions);
+
+  observerApiCatalog.observe(triggerLoadApiItems);
+
+// modal API items
+
+class DataModal extends ModalWindow {
+    constructor(modalTrigger) {
+        super(modalTrigger);
+        this.modalId = this.modalWrapper.querySelector("[modal_id]");
+        this.modalText = this.modalWrapper.querySelector("[modal_text]");
+        this.modalClose = this.modalWrapper.querySelector("[modal_close]");
+
+        this.addHideTriggers(this.modalClose);
+    }
+
+    getData(triggerElement) {
+        return {
+            id: triggerElement.getAttribute("data-id"),
+            text: triggerElement.getAttribute("data-text")
+        };
+    }
+
+    setData(data) {
+        if (!data) return;
+
+        if (this.modalId) {
+            this.modalId.textContent = data.id;
+        }
+        if (this.modalText) {
+            this.modalText.textContent = data.text;
+        }
+    }   
+
+    openWithElement(triggerElement) {
+        const data = this.getData(triggerElement);
+        this.setData(data);
+        this.modalShow();
     }
 }
 
-function substituteData (data) {
-    data = data.data;
-    data.map((current) => {
-        let itemApiClone = itemApi.cloneNode(true);
-        itemsApiCatalog.appendChild(itemApiClone);
-    })
-}
-
-
-const observerApiOptions = {
-    root: null,
-    threshold: 0.2  
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            fetchData();
-        }
-    });
-}, observerApiOptions);
-
-observer.observe(triggerLoadApiItems);
+const modalApiItems = new DataModal(".modalTrigger");

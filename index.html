@@ -23,15 +23,15 @@
                 <div class="header__menu__box" modal_wrapper>
                     <ul class="header__menu__items__box">
                         <li class="header__menu__item hover__underline__box hover__underline__trigger">
-                            <a class="hover__underline__top__el" href="#">co nas wyróżnia</a>
+                            <a class="hover__underline__top__el" href="#advantages">co nas wyróżnia</a>
                             <div class="hover__underline"></div>
                         </li>
                         <li class="header__menu__item hover__underline__box hover__underline__trigger">
-                            <a class="hover__underline__top__el" href="#">skład</a>
+                            <a class="hover__underline__top__el" href="#drug">skład</a>
                             <div class="hover__underline"></div>
                         </li>
                         <li class="header__menu__item hover__underline__box hover__underline__trigger">
-                            <a class="hover__underline__top__el" href="#">produkty</a>
+                            <a class="hover__underline__top__el" href="#products">produkty</a>
                             <div class="hover__underline"></div>
                         </li>
                     </ul>
@@ -64,7 +64,7 @@
     </header>
     <!-- Header: 07.02 16:00 -->
     <!-- Advantages 08.02 01:40 -->
-    <div class="advantages__block">
+    <div id="advantages" class="advantages__block">
         <div class="static__underline__box">
             <h2>Co wyróżnia nasz preparat</h2>
             <div class="static__underline"></div>
@@ -150,7 +150,7 @@
     <!-- Advantages mobile version finish 08.02 14:23 -->
 
     <!-- Description product start 08.02 14:27 -->
-    <div class="description__product__block">
+    <div id="drug" class="description__product__block">
         <div class="effect__drug__block">
             <div class="static__underline__box">
                 <h2>Działanie preparatu</h2>
@@ -359,10 +359,10 @@
     <!-- Description product finish 08.02 16:53 -->
 
     <!--  Items API block start 09.02 22:15 -->
-    <div class="items__api__block">
+    <div id="products" class="items__api__block">
         <div class="items__api__control__block">
             <div class="items__api__control__name">liczba produktów na stronie</div>
-            <select id="items__api__quantity__select" onchange="changeItemsApiLimit(this)">
+            <select id="items__api__quantity__select">
                 <option value="20" selected>20</option>
                 <option value="30">30</option>
                 <option value="40">40</option>
@@ -370,15 +370,34 @@
             </select>
         </div>
         <div class="items__api__catalog">
-            
+
             <div id="items__api__trigger"></div>
         </div>
-        <div class="item__api" data-id="" data-text="">
-                <div class="item__api__title">ID :</div>
-                <div class="item__api__id__num">1</div>
+        <div class="item__api modalTrigger" data-id="" data-text="">
+            <div class="item__api__title">ID :</div>
+            <div class="item__api__id__num">1</div>
+        </div>
+        <div class="modal_wrapper" modal_wrapper>
+            <div class="modal_content">
+                <div class="modal_close" modal_close><img src="./assets/img/close.png"></div>
+                <div class="modal_body">
+                    <div class="modal_title">ID</div>
+                    <div class="modal__body__item">
+                        <span>Nazwa:</span>
+                        <div class="modal_id" modal_id></div>
+                    </div>
+                    <div class="modal__body__item">
+                        <span>Wartość:</span>
+                        <div class="modal_text" modal_text></div>
+                    </div>
+                </div>
             </div>
+            <div class="modal_mask" mask></div>
+        </div>
     </div>
     <!--  Items API block pause 10.02 00:01 -->
+    <!--  Items API block start 10.02 18:01 -->
+    <!--  Items API block finish 10.02 23:40 -->
 </body>
 
 </html>

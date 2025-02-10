@@ -82,6 +82,10 @@
     animation: hoverUnderline .6s ease-in-out forwards alternate;
 }
 
+.hover__underline__trigger.active__menu__link .hover__underline {
+    animation: hoverUnderline 0.6s ease-in-out forwards;
+}
+
 
 .wrapper__img {
     position: relative;
@@ -236,6 +240,11 @@ li {
 nav {
     display: flex;
     justify-content: center;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5vw;
 }
 
 /*BASIC*/
@@ -446,6 +455,7 @@ header {
     display: flex;
     flex-direction: column;
     gap: 2vw;
+    cursor: default;
 }
 
 @media screen and (max-width: 800px) {
@@ -460,7 +470,7 @@ header {
     letter-spacing: 2px;
     font-size: 4vw;
     font-weight: 800;
-    color: #000;
+    color: #000; 
 }
 
 @media screen and (max-width: 800px) {
@@ -597,6 +607,7 @@ header {
     justify-content: center;
     background-color: var(--bcgr-color);
     gap: 5vw;
+    cursor: default;
 }
 
 @media screen and (max-width: 800px) {
@@ -759,7 +770,7 @@ header {
 }
 
 @media screen and (max-width: 800px) {
-    .advantages__item__description__item span{
+    .advantages__item__description__item span {
         font-size: 3vw;
     }
 }
@@ -768,13 +779,13 @@ header {
 
 /* ============================= DESCRIPTION PRODUCT ============================= */
 
-.effect__drug__block{
+.effect__drug__block {
     position: relative;
     display: none;
 }
 
 @media screen and (max-width: 800px) {
-    .effect__drug__block{
+    .effect__drug__block {
         display: flex;
         overflow: hidden;
         width: 90%;
@@ -785,23 +796,23 @@ header {
         background-color: #FFF;
     }
 
-    .effect__drug__block h2{
+    .effect__drug__block h2 {
         font-size: 5vw;
     }
 
-    .effect__drug__box{
+    .effect__drug__box {
         display: flex;
         flex-direction: column;
         gap: 3vw;
     }
 
-    .effect__drug__item{
+    .effect__drug__item {
         display: flex;
         align-items: center;
         gap: 5vw;
     }
 
-    .effect__drug__item__num{
+    .effect__drug__item__num {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -813,18 +824,18 @@ header {
         background-color: #FFF;
     }
 
-    .effect__drug__item__num span{
+    .effect__drug__item__num span {
         font-size: 4.5vw;
         font-weight: 800;
     }
 
-    .effect__drug__item__title{
+    .effect__drug__item__title {
         font-size: 3.5vw;
         font-size: 600;
     }
 }
 
-.description__product__block{
+.description__product__block {
     width: 80%;
     padding: 3vw 10%;
     background-color: #FFF;
@@ -832,6 +843,7 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 4vw;
+    cursor: default;
 }
 
 @media screen and (max-width: 800px) {
@@ -854,7 +866,7 @@ header {
     }
 }
 
-.description__product__box{
+.description__product__box {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -872,7 +884,7 @@ header {
     }
 }
 
-.description__product__box__title{
+.description__product__box__title {
     font-size: 1.3vw;
     font-weight: 600;
 }
@@ -883,7 +895,7 @@ header {
     }
 }
 
-.description__product__items__block{
+.description__product__items__block {
     width: 100%;
     display: flex;
     align-items: stretch;
@@ -897,7 +909,7 @@ header {
     }
 }
 
-.description__product__items__box{
+.description__product__items__box {
     width: 30%;
     display: flex;
     flex-direction: column;
@@ -905,6 +917,7 @@ header {
     justify-content: space-between;
     gap: 2vw;
 }
+
 @media screen and (max-width: 800px) {
     .description__product__items__box {
         width: 100%;
@@ -912,7 +925,7 @@ header {
     }
 }
 
-.description__product__item__molecular{
+.description__product__item__molecular {
     display: none;
 }
 
@@ -922,7 +935,7 @@ header {
     }
 }
 
-.description__product__item{
+.description__product__item {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -931,21 +944,21 @@ header {
 }
 
 @media screen and (max-width: 800px) {
-    .description__product__item{
+    .description__product__item {
         position: relative;
         gap: 4vw;
     }
-    
-    .description__product__item__molecular{
+
+    .description__product__item__molecular {
         left: 0;
     }
 
-    .description__product__item__molecular .molecular{
+    .description__product__item__molecular .molecular {
         width: 15%;
     }
 }
 
-.description__product__item__wrapper__ico{
+.description__product__item__wrapper__ico {
     width: 4vw;
     height: 4vw;
     overflow: hidden;
@@ -954,7 +967,7 @@ header {
 }
 
 @media screen and (max-width: 800px) {
-    .description__product__item__wrapper__ico{
+    .description__product__item__wrapper__ico {
         background-color: unset;
         width: 8vw;
         height: 8vw;
@@ -962,7 +975,7 @@ header {
     }
 }
 
-.description__product__item__wrapper__ico img{
+.description__product__item__wrapper__ico img {
     display: none;
     width: 100%;
     height: 100%;
@@ -970,57 +983,59 @@ header {
 }
 
 @media screen and (max-width: 800px) {
-    .description__product__item__wrapper__ico img{
+    .description__product__item__wrapper__ico img {
         display: block;
         object-fit: contain;
     }
 }
 
-.description__product__item__title{
+.description__product__item__title {
     font-size: 1.3vw;
     font-weight: 600;
 }
 
 @media screen and (max-width: 800px) {
-    .description__product__item__title{
+    .description__product__item__title {
         font-size: 4vw;
     }
 }
 
-.description__product__item__text{
+.description__product__item__text {
     font-size: 1vw;
     text-align: center;
 }
 
 @media screen and (max-width: 800px) {
-    .description__product__item__text{
+    .description__product__item__text {
         font-size: 3.5vw;
         position: relative;
         z-index: 3;
     }
 }
+
 @media screen and (max-width: 800px) {
-    .description__product__mobile__last{
+    .description__product__mobile__last {
         order: 3;
     }
-    .description__product__mobile__second{
+
+    .description__product__mobile__second {
         order: 2;
     }
 }
 
-.description__product__wrapper__img{
+.description__product__wrapper__img {
     position: relative;
     width: 100%;
     height: 100%;
 }
 
 @media screen and (max-width: 800px) {
-    .description__product__wrapper__img{
+    .description__product__wrapper__img {
         height: 45vh;
     }
 }
 
-.description__product__wrapper__img img{
+.description__product__wrapper__img img {
     position: relative;
     width: 100%;
     height: 100%;
@@ -1029,12 +1044,12 @@ header {
 }
 
 @media screen and (max-width: 800px) {
-    .description__product__wrapper__img img{
+    .description__product__wrapper__img img {
         object-fit: contain;
     }
 }
 
-.description__product__btn{
+.description__product__btn {
     font-size: 1.1vw;
     font-weight: 600;
     color: #FFF;
@@ -1044,21 +1059,21 @@ header {
 }
 
 @media screen and (max-width: 800px) {
-    .description__product__btn{
+    .description__product__btn {
         display: none;
     }
 }
 
-.description__product__btn:hover{
+.description__product__btn:hover {
     box-shadow: 0px 0px 8px var(--accent-color);
     text-shadow: 0px 0px 5px #FFF;
 }
 
-.description__product__items__box .molecular__box{
+.description__product__items__box .molecular__box {
     bottom: 23%;
 }
 
-.parallax__dog__wrapper{
+.parallax__dog__wrapper {
     position: relative;
     width: 80%;
     height: 15vw;
@@ -1070,14 +1085,14 @@ header {
 }
 
 @media screen and (max-width: 800px) {
-    .parallax__dog__wrapper{
+    .parallax__dog__wrapper {
         width: 50%;
         justify-content: center;
         align-items: center;
     }
 }
 
-.parallax__dog__wrapper img{
+.parallax__dog__wrapper img {
     position: absolute;
     width: 50%;
     bottom: 0;
@@ -1086,15 +1101,16 @@ header {
 }
 
 @media screen and (max-width: 800px) {
-    .parallax__dog__wrapper img{
+    .parallax__dog__wrapper img {
         width: 100%;
     }
 }
-/* ============================= DESCRIPTION PRODUCT ============================= */
 
 /* ============================= DESCRIPTION PRODUCT ============================= */
 
-.items__api__block{
+/* ============================= ITEMS API ============================= */
+
+.items__api__block {
     width: 80%;
     padding: 4vw 10%;
     display: flex;
@@ -1104,14 +1120,28 @@ header {
     background-color: var(--bcgr-color);
 }
 
-.items__api__control__block{
+@media screen and (max-width: 800px) {
+    .items__api__block {
+        width: 90%;
+        padding: 4vw 5%;
+    }
+}
+
+.items__api__control__block {
     width: 30%;
     display: flex;
     align-items: center;
     text-align: center;
 }
 
-.items__api__control__name{
+@media screen and (max-width: 800px) {
+    .items__api__control__block {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.items__api__control__name {
     font-size: 1vw;
     font-weight: 600;
     padding: 0.5vw;
@@ -1121,15 +1151,28 @@ header {
     outline-offset: 1px;
 }
 
-#items__api__quantity__select{
+@media screen and (max-width: 800px) {
+    .items__api__control__name {
+        font-size: 3vw;
+    }
+}
+
+#items__api__quantity__select {
     font-size: 1.1vw;
     font-weight: 600;
     padding: 0.5vw 1vw;
     color: #FFF;
     background-color: var(--accent-color);
+    cursor: pointer;
 }
 
-.items__api__catalog{
+@media screen and (max-width: 800px) {
+    #items__api__quantity__select {
+        font-size: 4vw;
+    }
+}
+
+.items__api__catalog {
     position: relative;
     width: 100%;
     display: flex;
@@ -1137,11 +1180,11 @@ header {
     gap: 2vw 5%;
 }
 
-.items__api__catalog .item__api{
+.items__api__catalog .item__api {
     display: flex;
 }
 
-.item__api{
+.item__api {
     width: 21.25%;
     height: 15vw;
     display: none;
@@ -1151,9 +1194,23 @@ header {
     background-color: #BEBEBE;
     font-size: 1.5vw;
     font-weight: 600;
+    cursor: pointer;
+    transition: .4s;
 }
 
-#items__api__trigger{
+.item__api:hover{
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 800px) {
+    .item__api {
+        width: 47.5%;
+        height: 35vw;
+        font-size: 4vw;
+    }
+}
+
+#items__api__trigger {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -1161,4 +1218,106 @@ header {
     opacity: 0;
 }
 
-/* ============================= DESCRIPTION PRODUCT ============================= */
+/* ============================= ITEMS API ============================= */
+
+
+/* ============================= MODAL ITEMS API ============================= */
+
+.modal_wrapper {
+    position: fixed;
+    width: 100vw;
+    height: 100dvh;
+    top: -100dvh;
+    left: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal_content {
+    position: relative;
+    width: 50%;
+    height: 50vh;
+    background-color: #FFF;
+    border-radius: 20px;
+    padding: 2vw 1vw;
+    z-index: 992;
+}
+
+@media screen and (max-width: 800px) {
+    .modal_content {
+        width: 80%;
+        height: 40vh;
+        padding: 8vw 5vw;
+    }
+}
+
+.modal_body {
+    font-size: 1.5vw;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    gap: 4vw;
+}
+
+@media screen and (max-width: 800px) {
+    .modal_body {
+        font-size: 5vw;
+        gap: 6vw;
+    }
+}
+
+.modal__body__item {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+@media screen and (max-width: 800px) {
+    .modal__body__item {
+        gap: 3vw;
+    }
+}
+
+.modal_close {
+    position: absolute;
+    width: 1.5vw;
+    height: 1.5vw;
+    padding: 0.5vw;
+    right: 0.5vw;
+    top: 0.5vw;
+    overflow: hidden;
+    cursor: pointer;
+    transition: .4s;
+}
+
+@media screen and (max-width: 800px) {
+    .modal_close {
+        width: 8vw;
+        height: 8vw;
+    }
+}
+
+.modal_close img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal_close:hover{
+    background-color: var(--accent-color);
+}
+
+.modal_mask {
+    position: absolute;
+    width: 100vw;
+    height: 100dvh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 991;
+}
+
+
+/* ============================= MODAL ITEMS API ============================= */
