@@ -245,6 +245,14 @@ html {
     scroll-padding-top: 5.5vw;
 }
 
+h2{
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: 600;
+    background: linear-gradient(to right, var(--primary-color), grey 60%, var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 /*BASIC*/
 
 /* ============================= HEADER ============================= */
@@ -281,7 +289,7 @@ header {
 
 .header__logo__wrapper {
     width: 20%;
-    height: 1.5vw;
+    height: 2vw;
     overflow: hidden;
 }
 
@@ -369,14 +377,19 @@ header {
 }
 
 .header__menu__box li {
-    font-size: 1vw;
+    font-size: clamp(0.7rem, 1vw, 2rem);
     font-weight: 600;
     text-transform: uppercase;
 }
 
 @media screen and (max-width: 800px) {
+    .header__menu__box li{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
     .header__menu__box li {
-        font-size: 5vw;
         color: #FFF;
     }
 }
@@ -466,7 +479,7 @@ header {
 .header__center h1 {
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 4vw;
+    font-size: clamp(3rem, 4vw, 4rem);
     font-weight: 800;
     color: #000; 
 }
@@ -497,24 +510,27 @@ header {
 }
 
 .header__title {
-    font-size: 2vw;
+    font-size: clamp(0.7rem, 2vw, 2rem);
+    background: linear-gradient(to right, var(--primary-color), grey);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
     font-weight: 600;
 }
 
 @media screen and (max-width: 800px) {
     .header__title {
-        font-size: 6vw;
+        font-size: 1rem;
     }
 }
 
 .header__description {
-    font-size: 1.1vw;
+    font-size: clamp(0.7rem, 1.1vw, 2rem);
     font-weight: 400;
 }
 
 @media screen and (max-width: 800px) {
     .header__description {
-        font-size: 4.5vw;
+        font-size: 0.8rem;
     }
 }
 
@@ -615,18 +631,6 @@ header {
     }
 }
 
-
-.advantages__block h2 {
-    font-size: 2vw;
-    font-weight: 600;
-}
-
-@media screen and (max-width: 800px) {
-    .advantages__block h2 {
-        font-size: 5vw;
-    }
-}
-
 .advantages__items__block {
     width: 100%;
     display: flex;
@@ -657,23 +661,28 @@ header {
 }
 
 .advantages__item__title {
-    font-size: 1.3vw;
+    font-size: clamp(0.7rem, 1.3vw, 2rem);
     font-weight: 600;
 }
 
 @media screen and (max-width: 800px) {
     .advantages__item__title {
-        font-size: 3.5vw;
+        font-size: 1rem;
     }
 }
 
 .advantages__item__description {
-    font-size: 1vw;
+    font-size: clamp(0.7rem, 1vw, 2rem);
 }
 
 @media screen and (max-width: 800px) {
     .advantages__item__description {
-        font-size: 2.5vw;
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .advantages__item__description {
         position: relative;
         z-index: 3;
     }
@@ -763,13 +772,13 @@ header {
 }
 
 .advantages__item__description__item span {
-    font-size: 1vw;
+    font-size: clamp(0.7rem, 1vw, 2rem);
     font-weight: 600;
 }
 
 @media screen and (max-width: 800px) {
-    .advantages__item__description__item span {
-        font-size: 3vw;
+    .advantages__item__description__item span{
+        font-size: 1rem;
     }
 }
 
@@ -794,10 +803,6 @@ header {
         background-color: #FFF;
     }
 
-    .effect__drug__block h2 {
-        font-size: 5vw;
-    }
-
     .effect__drug__box {
         display: flex;
         flex-direction: column;
@@ -818,18 +823,29 @@ header {
         height: 8vw;
         border-radius: 50%;
         border: 3px solid var(--bcgr-color);
-        /* box-shadow: 0px 0px 5px var(--bcgr-color); */
         background-color: #FFF;
     }
 
     .effect__drug__item__num span {
-        font-size: 4.5vw;
+        font-size: clamp(1rem, 4.5vw, 3rem);
         font-weight: 800;
     }
 
+    @media screen and (max-width: 800px) {
+        .effect__drug__item__num span{
+            font-size: 0.8rem;
+        }
+    }
+
     .effect__drug__item__title {
-        font-size: 3.5vw;
-        font-size: 600;
+        font-size: clamp(0.7rem, 3.5vw, 3rem);
+        font-weight: 600;
+    }
+
+    @media screen and (max-width: 800px) {
+        .effect__drug__item__title{
+            font-size: 0.8rem;
+        }
     }
 }
 
@@ -853,17 +869,6 @@ header {
     }
 }
 
-.description__product__block h2 {
-    font-size: 2vw;
-    font-weight: 600;
-}
-
-@media screen and (max-width: 800px) {
-    .description__product__block h2 {
-        font-size: 5vw;
-    }
-}
-
 .description__product__box {
     width: 100%;
     display: flex;
@@ -883,13 +888,13 @@ header {
 }
 
 .description__product__box__title {
-    font-size: 1.3vw;
+    font-size: clamp(0.7rem, 1.3vw, 2rem);
     font-weight: 600;
 }
 
 @media screen and (max-width: 800px) {
     .description__product__box__title {
-        font-size: 3vw;
+        font-size: 1rem;
     }
 }
 
@@ -988,24 +993,29 @@ header {
 }
 
 .description__product__item__title {
-    font-size: 1.3vw;
+    font-size: clamp(0.7rem, 1.3vw, 2rem);
     font-weight: 600;
 }
 
 @media screen and (max-width: 800px) {
     .description__product__item__title {
-        font-size: 4vw;
+        font-size: 1.2rem;
     }
 }
 
 .description__product__item__text {
-    font-size: 1vw;
+    font-size: clamp(0.7rem, 1vw, 2rem);
     text-align: center;
 }
 
 @media screen and (max-width: 800px) {
+    .description__product__item__title {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
     .description__product__item__text {
-        font-size: 3.5vw;
         position: relative;
         z-index: 3;
     }
@@ -1048,7 +1058,7 @@ header {
 }
 
 .description__product__btn {
-    font-size: 1.1vw;
+    font-size: clamp(0.7rem, 1.1vw, 2rem);
     font-weight: 600;
     color: #FFF;
     padding: 0.5vw 2vw;
@@ -1140,7 +1150,7 @@ header {
 }
 
 .items__api__control__name {
-    font-size: 1vw;
+    font-size: clamp(0.7rem, 1vw, 2rem);
     font-weight: 600;
     padding: 0.5vw;
     background-color: #FFF;
@@ -1151,12 +1161,12 @@ header {
 
 @media screen and (max-width: 800px) {
     .items__api__control__name {
-        font-size: 3vw;
+        font-size: 1rem;
     }
 }
 
 #items__api__quantity__select {
-    font-size: 1.1vw;
+    font-size: clamp(0.7rem, 1.1vw, 2rem);
     font-weight: 600;
     padding: 0.5vw 1vw;
     color: #FFF;
@@ -1166,7 +1176,7 @@ header {
 
 @media screen and (max-width: 800px) {
     #items__api__quantity__select {
-        font-size: 4vw;
+        font-size: 1rem;
     }
 }
 
@@ -1190,10 +1200,16 @@ header {
     justify-content: center;
     gap: 0.5vw;
     background-color: #BEBEBE;
-    font-size: 1.5vw;
+    font-size: clamp(0.7rem, 1.5vw, 2.5rem);
     font-weight: 600;
     cursor: pointer;
     transition: .4s;
+}
+
+@media screen and (max-width: 800px) {
+    .item__api {
+        font-size: 1rem;
+    }
 }
 
 .item__api:hover{
@@ -1204,7 +1220,6 @@ header {
     .item__api {
         width: 47.5%;
         height: 35vw;
-        font-size: 4vw;
     }
 }
 
@@ -1252,7 +1267,7 @@ header {
 }
 
 .modal_body {
-    font-size: 1.5vw;
+    font-size: clamp(0.7rem, 1.5vw, 2.5rem);
     font-weight: 800;
     display: flex;
     flex-direction: column;
@@ -1261,7 +1276,7 @@ header {
 
 @media screen and (max-width: 800px) {
     .modal_body {
-        font-size: 5vw;
+        font-size: 1rem;
         gap: 6vw;
     }
 }
