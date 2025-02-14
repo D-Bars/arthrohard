@@ -721,7 +721,7 @@ header {
     }
 }
 
-.advantages__items__box .advantages__item__top__el{
+.advantages__items__box .advantages__item__top__el {
     padding-bottom: unset;
 }
 
@@ -842,11 +842,13 @@ header {
 .description__product__block {
     width: 80%;
     padding: 3vw 10%;
+    padding-bottom: 0;
     background-color: #FFF;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 4vw;
+    overflow: hidden;
     cursor: default;
 }
 
@@ -854,6 +856,7 @@ header {
     .description__product__block {
         width: 100%;
         padding: 3vw 0;
+        padding-bottom: 0;
         overflow: hidden;
         background-color: var(--bcgr-color);
     }
@@ -870,7 +873,9 @@ header {
 @media screen and (max-width: 800px) {
     .description__product__box {
         width: 90%;
+        gap: 10vw;
         padding: 3vw 5%;
+        padding-bottom: 0;
         gap: 10vw;
         margin-top: 2vw;
         background-color: #FFF;
@@ -1028,6 +1033,10 @@ header {
     }
 }
 
+.description__product__wrapper__img .molecular__box .molecular{
+    width: 30%;
+}
+
 .description__product__wrapper__img img {
     position: relative;
     width: 100%;
@@ -1066,9 +1075,22 @@ header {
     bottom: 23%;
 }
 
+@media screen and (max-width: 800px) {
+    .description__product__items__box .molecular__box__green{
+        bottom: 10%;
+        justify-content: center;
+        gap: 5%;
+    }
+
+    .description__product__items__box .molecular__box__green .molecular__right{
+        transform: scaleX(-1) rotate(-10deg);
+        top: -2vh;
+    }
+}
+
 .parallax__dog__wrapper {
     position: relative;
-    width: 80%;
+    width: 50%;
     height: 15vw;
     display: flex;
     justify-content: flex-end;
@@ -1079,7 +1101,7 @@ header {
 
 @media screen and (max-width: 800px) {
     .parallax__dog__wrapper {
-        width: 50%;
+        width: 80%;
         justify-content: center;
         align-items: center;
     }
@@ -1087,7 +1109,7 @@ header {
 
 .parallax__dog__wrapper img {
     position: absolute;
-    width: 50%;
+    width: 100%;
     bottom: 0;
     transition: transform 0.2s ease-out;
     z-index: 3;
@@ -1096,6 +1118,22 @@ header {
 @media screen and (max-width: 800px) {
     .parallax__dog__wrapper img {
         width: 100%;
+    }
+}
+
+.parallax__dog__wrapper .molecular__box__green{
+    bottom: -4vh;
+    justify-content: center;
+    gap: 10vw;
+}
+
+.parallax__dog__wrapper .molecular__box .molecular{
+    width: 20%;
+}
+
+@media screen and (max-width: 800px) {
+    .parallax__dog__wrapper .molecular__box .molecular{
+        width: 23%;
     }
 }
 

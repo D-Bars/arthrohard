@@ -86,41 +86,41 @@ if (!isMobile) {
 
 //parallax
 
-window.addEventListener('DOMContentLoaded', () => {
-    const dog = document.getElementById("description__product__parallax__dog");
-    const wrapper = document.querySelector(".parallax__dog__wrapper");
+// window.addEventListener('DOMContentLoaded', () => {
+//     const dog = document.getElementById("description__product__parallax__dog");
+//     const wrapper = document.querySelector(".parallax__dog__wrapper");
 
-    if (window.innerWidth < 800) {
-        dog.style.transform = 'translateX(0)';
-        return;
-    }
+//     if (window.innerWidth < 800) {
+//         dog.style.transform = 'translateX(0)';
+//         return;
+//     }
 
-    const maxMove = 7.5;  
-    const factor = 0.005; 
+//     const maxMove = 7.5;  
+//     const factor = 0.005; 
 
-    function handleParallax() {
-        const scrollY = window.scrollY;
-        const moveX = Math.sin(scrollY * factor) * maxMove;
-        dog.style.transform = `translateX(${moveX}vw)`;
-    }
+//     function handleParallax() {
+//         const scrollY = window.scrollY;
+//         const moveX = Math.sin(scrollY * factor) * maxMove;
+//         dog.style.transform = `translateX(${moveX}vw)`;
+//     }
 
-    const observerParallaxOptions = {
-        root: null,
-        threshold: 0.2  
-    };
+//     const observerParallaxOptions = {
+//         root: null,
+//         threshold: 0.2  
+//     };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                window.addEventListener("scroll", handleParallax);
-            } else {
-                window.removeEventListener("scroll", handleParallax);
-            }
-        });
-    }, observerParallaxOptions);
+//     const observer = new IntersectionObserver((entries) => {
+//         entries.forEach(entry => {
+//             if (entry.isIntersecting) {
+//                 window.addEventListener("scroll", handleParallax);
+//             } else {
+//                 window.removeEventListener("scroll", handleParallax);
+//             }
+//         });
+//     }, observerParallaxOptions);
 
-    observer.observe(wrapper);
-});
+//     observer.observe(wrapper);
+// });
 
 // API get products
 
