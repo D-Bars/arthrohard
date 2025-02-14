@@ -1033,7 +1033,7 @@ header {
     }
 }
 
-.description__product__wrapper__img .molecular__box .molecular{
+.description__product__wrapper__img .molecular__box .molecular {
     width: 30%;
 }
 
@@ -1076,13 +1076,13 @@ header {
 }
 
 @media screen and (max-width: 800px) {
-    .description__product__items__box .molecular__box__green{
+    .description__product__items__box .molecular__box__green {
         bottom: 10%;
         justify-content: center;
         gap: 5%;
     }
 
-    .description__product__items__box .molecular__box__green .molecular__right{
+    .description__product__items__box .molecular__box__green .molecular__right {
         transform: scaleX(-1) rotate(-10deg);
         top: -2vh;
     }
@@ -1121,18 +1121,18 @@ header {
     }
 }
 
-.parallax__dog__wrapper .molecular__box__green{
+.parallax__dog__wrapper .molecular__box__green {
     bottom: -4vh;
     justify-content: center;
     gap: 10vw;
 }
 
-.parallax__dog__wrapper .molecular__box .molecular{
+.parallax__dog__wrapper .molecular__box .molecular {
     width: 20%;
 }
 
 @media screen and (max-width: 800px) {
-    .parallax__dog__wrapper .molecular__box .molecular{
+    .parallax__dog__wrapper .molecular__box .molecular {
         width: 23%;
     }
 }
@@ -1154,7 +1154,8 @@ header {
 @media screen and (max-width: 800px) {
     .items__api__block {
         width: 90%;
-        padding: 4vw 5%;
+        padding: 10vw 5%;
+        gap: 10vw;
     }
 }
 
@@ -1167,8 +1168,9 @@ header {
 
 @media screen and (max-width: 800px) {
     .items__api__control__block {
-        width: 100%;
+        width: 80%;
         justify-content: center;
+        flex-direction: column;
     }
 }
 
@@ -1179,27 +1181,40 @@ header {
     background-color: #FFF;
     color: #000;
     outline: 1px solid var(--accent-color);
-    outline-offset: 1px;
+    outline-offset: -1px;
 }
 
 @media screen and (max-width: 800px) {
     .items__api__control__name {
+        width: 99%;
+        padding: 2vh 0.5%;
         font-size: 1rem;
     }
 }
 
 #items__api__quantity__select {
+    appearance: none;
+    width: 30%;
     font-size: clamp(0.7rem, 1.1vw, 2rem);
     font-weight: 600;
-    padding: 0.5vw 1vw;
+    padding: 0.5vw 0;
+    padding-right: 5%;
     color: #FFF;
     background-color: var(--accent-color);
+    text-align: center;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='24px' height='24px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 70% center;
+    background-size: 1.5em;
     cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {
     #items__api__quantity__select {
+        width: 100%;
+        padding: 2vh 0;
         font-size: 1rem;
+        background-position: 60% center;
     }
 }
 
