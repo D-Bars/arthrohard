@@ -1,55 +1,55 @@
 class ModalWindow {
-    constructor(modalTrigger) {
-        this.modalTrigger = document.querySelector(modalTrigger);
-        this.mainBox = this.modalTrigger.parentElement;
-        this.modalWrapper = this.mainBox.querySelector('[modal_wrapper]');
-        this.modalMask = this.modalWrapper.querySelector('[mask]');
+  constructor(modalTrigger) {
+    this.modalTrigger = document.querySelector(modalTrigger);
+    this.mainBox = this.modalTrigger.parentElement;
+    this.modalWrapper = this.mainBox.querySelector('[modal_wrapper]');
+    this.modalMask = this.modalWrapper.querySelector('[mask]');
 
-        this.triggerHideModal = [this.modalMask];
+    this.triggerHideModal = [this.modalMask];
 
-        this.addOnClick(this.modalTrigger, () => this.modalShow());
-        this.addHideTriggers(this.triggerHideModal);
+    this.addOnClick(this.modalTrigger, () => this.modalShow());
+    this.addHideTriggers(this.triggerHideModal);
+  }
+
+  addOnClick(obj, callback) {
+    if (obj instanceof NodeList || Array.isArray(obj)) {
+      obj.forEach((currentObj) => {
+        currentObj.addEventListener('click', callback);
+      });
+    } else {
+      obj.addEventListener('click', callback);
     }
+  }
 
-    addOnClick(obj, callback) {
-        if (obj instanceof NodeList || Array.isArray(obj)) {
-            obj.forEach((currentObj) => {
-                currentObj.addEventListener('click', callback);
-            });
-        } else {
-            obj.addEventListener('click', callback);
-        }
+  addHideTriggers(trigger) {
+    if (trigger instanceof NodeList || Array.isArray(trigger)) {
+      trigger.forEach((currentObj) => {
+        this.triggerHideModal.push(currentObj);
+      });
+      this.addOnClick(trigger, () => this.modalHide());
+    } else {
+      this.triggerHideModal.push(trigger);
+      this.addOnClick(trigger, () => this.modalHide());
     }
+  }
 
-    addHideTriggers(trigger) {
-        if (trigger instanceof NodeList || Array.isArray(trigger)) {
-            trigger.forEach((currentObj) => {
-                this.triggerHideModal.push(currentObj);
-            });
-            this.addOnClick(trigger, () => this.modalHide());
-        } else {
-            this.triggerHideModal.push(trigger);
-            this.addOnClick(trigger, () => this.modalHide());
-        }
-    }
+  modalShow() {
+    this.modalWrapper.style.transition = 'top 0.5s ease';
+    this.modalWrapper.style.top = '0vh';
+  }
 
-    modalShow() {
-        this.modalWrapper.style.transition = 'top 0.5s ease';
-        this.modalWrapper.style.top = '0vh';
-    }
-
-    modalHide() {
-        this.modalWrapper.style.transition = 'top 0.5s ease';
-        this.modalWrapper.style.top = '-100vh';
-    }
+  modalHide() {
+    this.modalWrapper.style.transition = 'top 0.5s ease';
+    this.modalWrapper.style.top = '-100vh';
+  }
 }
 
 const menuModalTrigger = new ModalWindow('.burger__menu');
 
 // added trigers menu items
 const triggersMenuItems = () => {
-    const menuItems = document.querySelectorAll('.header__menu__items__box .header__menu__item');
-    menuModalTrigger.addHideTriggers(menuItems);
+  const menuItems = document.querySelectorAll('.header__menu__items__box .header__menu__item');
+  menuModalTrigger.addHideTriggers(menuItems);
 };
 triggersMenuItems();
 
@@ -60,29 +60,47 @@ const isMobile = window.innerWidth < 800;
 
 if (!isMobile) {
   const sectionIds = ["advantages", "drug", "products"];
-  const sectionsToObserve = sectionIds
+  const sections = sectionIds
     .map(id => document.getElementById(id))
     .filter(Boolean);
 
-  const observerSections = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const sectionId = entry.target.getAttribute("id");
-      const menuItem = document.querySelector(`nav ul li a[href="#${sectionId}"]`)?.closest('.hover__underline__trigger');
-
-      if (entry.isIntersecting) {
-        document.querySelectorAll('.hover__underline__trigger').forEach(item => {
-          item.classList.remove('active__menu__link');
-        });
-
-        menuItem?.classList.add('active__menu__link');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  sectionsToObserve.forEach(section => {
-    observerSections.observe(section);
+  const sectionPositions = sections.map(section => {
+    const rect = section.getBoundingClientRect();
+    const top = rect.top + window.scrollY;
+    const bottom = top + rect.height;
+    return { id: section.getAttribute('id'), top, bottom };
   });
+
+  const menuContainer = document.querySelector('.header__menu__items__box');
+  const menuItems = menuContainer.querySelectorAll('.hover__underline__trigger');
+
+  let currentActiveSectionId = null;
+
+  function onScroll() {
+    const scrollPos = window.scrollY;
+    let newActiveSectionId = null;
+
+    for (const section of sectionPositions) {
+      if (scrollPos >= section.top && scrollPos < section.bottom) {
+        newActiveSectionId = section.id;
+        break;
+      }
+    }
+
+    if (newActiveSectionId && newActiveSectionId !== currentActiveSectionId) {
+      currentActiveSectionId = newActiveSectionId;
+      
+      menuItems.forEach(item => item.classList.remove('active__menu__link'));
+
+      const activeMenuItem = menuContainer.querySelector(`a[href="#${newActiveSectionId}"]`)?.closest('.hover__underline__trigger');
+      activeMenuItem?.classList.add('active__menu__link');
+    }
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
 }
+
+
 
 //parallax
 
@@ -124,125 +142,125 @@ if (!isMobile) {
 
 // API get products
 
-  const triggerLoadApiItems = document.getElementById("items__api__trigger");
-  const itemApi = document.querySelector(".item__api");
-  const itemsApiCatalog = document.querySelector(".items__api__catalog");
-  const selectElement = document.getElementById("items__api__quantity__select");
-  let limitItemsApi = selectElement.value;
+const triggerLoadApiItems = document.getElementById("items__api__trigger");
+const itemApi = document.querySelector(".item__api");
+const itemsApiCatalog = document.querySelector(".items__api__catalog");
+const selectElement = document.getElementById("items__api__quantity__select");
+let limitItemsApi = selectElement.value;
 
-  let currentPage = 1;
-  let pageSize = parseInt(limitItemsApi, 10);
+let currentPage = 1;
+let pageSize = parseInt(limitItemsApi, 10);
 
-  let isLoading = false;
+let isLoading = false;
 
-  function substituteData(data) {
-    const items = data.data; 
+function substituteData(data) {
+  const items = data.data;
 
-    items.forEach((current) => {
-        let itemApiClone = itemApi.cloneNode(true);
-        itemApiClone.addEventListener("click", function () {
-            modalApiItems.openWithElement(this);
-        });
-
-        itemApiClone.setAttribute("data-id", current.id);
-        itemApiClone.setAttribute("data-text", current.text);
-
-        const mapping = {
-            ".item__api__id__num": current.id
-        };
-
-        Object.keys(mapping).forEach(selector => {
-            const element = itemApiClone.querySelector(selector);
-            if (element) {
-                element.textContent = mapping[selector];
-            }
-        });
-
-        itemsApiCatalog.appendChild(itemApiClone); 
+  items.forEach((current) => {
+    let itemApiClone = itemApi.cloneNode(true);
+    itemApiClone.addEventListener("click", function () {
+      modalApiItems.openWithElement(this);
     });
-    itemsApiCatalog.appendChild(triggerLoadApiItems);
+
+    itemApiClone.setAttribute("data-id", current.id);
+    itemApiClone.setAttribute("data-text", current.text);
+
+    const mapping = {
+      ".item__api__id__num": current.id
+    };
+
+    Object.keys(mapping).forEach(selector => {
+      const element = itemApiClone.querySelector(selector);
+      if (element) {
+        element.textContent = mapping[selector];
+      }
+    });
+
+    itemsApiCatalog.appendChild(itemApiClone);
+  });
+  itemsApiCatalog.appendChild(triggerLoadApiItems);
 }
 
-  async function changeItemsApiLimit(select) {
-    limitItemsApi = select.value;
-    pageSize = parseInt(limitItemsApi, 10);
-    currentPage = 1;
-    itemsApiCatalog.innerHTML = "";
-    fetchData();
-  }
+async function changeItemsApiLimit(select) {
+  limitItemsApi = select.value;
+  pageSize = parseInt(limitItemsApi, 10);
+  currentPage = 1;
+  itemsApiCatalog.innerHTML = "";
+  fetchData();
+}
 
-  selectElement.addEventListener("change", function() {
-    changeItemsApiLimit(this);
-  });
+selectElement.addEventListener("change", function () {
+  changeItemsApiLimit(this);
+});
 
-  async function fetchData() {
-    if (isLoading) return;
-    isLoading = true;
-    try {
-      const response = await fetch(`https://brandstestowy.smallhost.pl/api/random?pageNumber=${currentPage}&pageSize=${pageSize}`);
-      if (!response.ok) {
-        throw new Error(`Error: ${response.status}`);
-      }
-      const data = await response.json();
-      substituteData(data);
-      currentPage++;
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      isLoading = false;
+async function fetchData() {
+  if (isLoading) return;
+  isLoading = true;
+  try {
+    const response = await fetch(`https://brandstestowy.smallhost.pl/api/random?pageNumber=${currentPage}&pageSize=${pageSize}`);
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`);
     }
+    const data = await response.json();
+    substituteData(data);
+    currentPage++;
+  } catch (error) {
+    console.error("Error:", error);
+  } finally {
+    isLoading = false;
   }
-  
-  const observerApiOptions = {
-    root: null,
-    threshold: 0.2  
-  };
+}
 
-  const observerApiCatalog = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        fetchData();
-      }
-    });
-  }, observerApiOptions);
+const observerApiOptions = {
+  root: null,
+  threshold: 0.2
+};
 
-  observerApiCatalog.observe(triggerLoadApiItems);
+const observerApiCatalog = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      fetchData();
+    }
+  });
+}, observerApiOptions);
+
+observerApiCatalog.observe(triggerLoadApiItems);
 
 // modal API items
 
 class DataModal extends ModalWindow {
-    constructor(modalTrigger) {
-        super(modalTrigger);
-        this.modalId = this.modalWrapper.querySelector("[modal_id]");
-        this.modalText = this.modalWrapper.querySelector("[modal_text]");
-        this.modalClose = this.modalWrapper.querySelector("[modal_close]");
+  constructor(modalTrigger) {
+    super(modalTrigger);
+    this.modalId = this.modalWrapper.querySelector("[modal_id]");
+    this.modalText = this.modalWrapper.querySelector("[modal_text]");
+    this.modalClose = this.modalWrapper.querySelector("[modal_close]");
 
-        this.addHideTriggers(this.modalClose);
+    this.addHideTriggers(this.modalClose);
+  }
+
+  getData(triggerElement) {
+    return {
+      id: triggerElement.getAttribute("data-id"),
+      text: triggerElement.getAttribute("data-text")
+    };
+  }
+
+  setData(data) {
+    if (!data) return;
+
+    if (this.modalId) {
+      this.modalId.textContent = data.id;
     }
-
-    getData(triggerElement) {
-        return {
-            id: triggerElement.getAttribute("data-id"),
-            text: triggerElement.getAttribute("data-text")
-        };
+    if (this.modalText) {
+      this.modalText.textContent = data.text;
     }
+  }
 
-    setData(data) {
-        if (!data) return;
-
-        if (this.modalId) {
-            this.modalId.textContent = data.id;
-        }
-        if (this.modalText) {
-            this.modalText.textContent = data.text;
-        }
-    }   
-
-    openWithElement(triggerElement) {
-        const data = this.getData(triggerElement);
-        this.setData(data);
-        this.modalShow();
-    }
+  openWithElement(triggerElement) {
+    const data = this.getData(triggerElement);
+    this.setData(data);
+    this.modalShow();
+  }
 }
 
 const modalApiItems = new DataModal(".modalTrigger");
