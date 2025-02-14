@@ -81,21 +81,26 @@ if (!isMobile) {
     let newActiveSectionId = null;
 
     for (const section of sectionPositions) {
-      if (scrollPos >= section.top && scrollPos < section.bottom) {
+      if (scrollPos >= section.top -150 && scrollPos < section.bottom -150) {
         newActiveSectionId = section.id;
         break;
       }
     }
 
-    if (newActiveSectionId && newActiveSectionId !== currentActiveSectionId) {
+    if (newActiveSectionId !== currentActiveSectionId) {
       currentActiveSectionId = newActiveSectionId;
       
       menuItems.forEach(item => item.classList.remove('active__menu__link'));
 
-      const activeMenuItem = menuContainer.querySelector(`a[href="#${newActiveSectionId}"]`)?.closest('.hover__underline__trigger');
-      activeMenuItem.classList.add('active__menu__link');
+      if (newActiveSectionId) {
+        const activeMenuItem = menuContainer.querySelector(`a[href="#${newActiveSectionId}"]`)?.closest('.hover__underline__trigger');
+        if (activeMenuItem) {
+          activeMenuItem.classList.add('active__menu__link');
+        }
+      }
     }
   }
+
   window.addEventListener('scroll', onScroll);
   onScroll();
 }
