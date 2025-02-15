@@ -78,25 +78,20 @@ if (!isMobile) {
 
   function onScroll() {
     const scrollPos = window.scrollY;
-    let newActiveSectionId = null;
 
     for (const section of sectionPositions) {
-      if (scrollPos >= section.top -150 && scrollPos < section.bottom -150) {
-        newActiveSectionId = section.id;
-        break;
-      }
-    }
+      if (scrollPos >= section.top - 150 && scrollPos < section.bottom - 150) {
+        if (section.id !== currentActiveSectionId) {
+          currentActiveSectionId = section.id;
 
-    if (newActiveSectionId !== currentActiveSectionId) {
-      currentActiveSectionId = newActiveSectionId;
-      
-      menuItems.forEach(item => item.classList.remove('active__menu__link'));
+          menuItems.forEach(item => item.classList.remove('active__menu__link'));
 
-      if (newActiveSectionId) {
-        const activeMenuItem = menuContainer.querySelector(`a[href="#${newActiveSectionId}"]`)?.closest('.hover__underline__trigger');
-        if (activeMenuItem) {
-          activeMenuItem.classList.add('active__menu__link');
+          const activeMenuItem = menuContainer.querySelector(`a[href="#${currentActiveSectionId}"]`)?.closest('.hover__underline__trigger');
+          if (activeMenuItem) {
+            activeMenuItem.classList.add('active__menu__link');
+          }
         }
+        return;
       }
     }
   }
