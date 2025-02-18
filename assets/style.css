@@ -12,7 +12,7 @@
 
 @keyframes hoverUnderline {
     0% {
-        bottom: -0.3vh;
+        bottom: -2px;
         left: 50%;
         width: 1vw;
     }
@@ -42,7 +42,7 @@
 
 .static__underline {
     width: 50%;
-    height: 0.1vh;
+    height: 1px;
     align-self: center;
     margin-top: 2vw;
     background-color: #000;
@@ -69,10 +69,10 @@
 
 .hover__underline {
     position: absolute;
-    height: 0.2vh;
-    bottom: -0.2vh;
+    height: 2px;
+    bottom: -2px;
     left: 50%;
-    width: 1vw;
+    width: 0vw;
     background-color: #000;
 }
 
@@ -81,9 +81,8 @@
 }
 
 .hover__underline__trigger.active__menu__link .hover__underline {
-    animation: hoverUnderline 0.6s ease-in-out forwards;
+    animation: hoverUnderline .6s ease-in-out forwards;
 }
-
 
 .wrapper__img {
     position: relative;
@@ -140,26 +139,20 @@
 
 @font-face {
     font-family: 'Montserrat';
-    src: url(./fonts/Montserrat-Bold.ttf);
+    src: url(./fonts/futura_pt_bold.ttf);
     font-weight: 800;
 }
 
 @font-face {
     font-family: 'Montserrat';
-    src: url(./fonts/Montserrat-Medium.ttf);
+    src: url(./fonts/futura_pt_regular.ttf);
     font-weight: 600;
 }
 
 @font-face {
     font-family: 'Montserrat';
-    src: url(./fonts/Montserrat-Regular.ttf);
+    src: url(./fonts/futura_pt_light.ttf);
     font-weight: 400;
-}
-
-@font-face {
-    font-family: 'Montserrat';
-    src: url(./fonts/Montserrat-Thin.ttf);
-    font-weight: 200;
 }
 
 * {
@@ -377,14 +370,14 @@ header {
 }
 
 .header__menu__box li {
-    font-size: clamp(0.7rem, 1vw, 2rem);
+    font-size: clamp(1rem, 1vw, 2rem);
     font-weight: 600;
     text-transform: uppercase;
 }
 
 @media screen and (max-width: 800px) {
     .header__menu__box li {
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 }
 
@@ -524,18 +517,18 @@ header {
 }
 
 .header__description {
-    font-size: clamp(0.7rem, 1.1vw, 2rem);
+    font-size: clamp(1rem, 1.1vw, 2rem);
     font-weight: 400;
 }
 
 @media screen and (max-width: 800px) {
     .header__description {
-        font-size: 0.8rem;
+        font-size: 1.3rem;
     }
 }
 
 .header__btn {
-    font-size: clamp(0.7rem, 1vw, 2rem);
+    font-size: clamp(1rem, 1vw, 2rem);
     display: flex;
     align-self: flex-start;
     text-align: center;
@@ -543,7 +536,6 @@ header {
     background-color: var(--supporting-color);
     color: #FFF;
     font-weight: 800;
-    cursor: pointer;
     transition: .4s;
 }
 
@@ -555,7 +547,7 @@ header {
 
 .header__btn:hover {
     box-shadow: 0px 0px 8px var(--supporting-color);
-    text-shadow: 0px 0px 5px #FFF;
+    text-shadow: 0px 0px 3px #FFF;
 }
 
 .header__molecular__box .header__molecular>img {
@@ -659,7 +651,7 @@ header {
 }
 
 .advantages__item__title {
-    font-size: clamp(0.7rem, 1.3vw, 2rem);
+    font-size: clamp(1rem, 1.3vw, 2rem);
     font-weight: 600;
 }
 
@@ -670,13 +662,7 @@ header {
 }
 
 .advantages__item__description {
-    font-size: clamp(0.7rem, 1vw, 2rem);
-}
-
-@media screen and (max-width: 800px) {
-    .advantages__item__description {
-        font-size: 0.8rem;
-    }
+    font-size: clamp(1rem, 1vw, 2rem);
 }
 
 @media screen and (max-width: 800px) {
@@ -773,7 +759,7 @@ header {
 }
 
 .advantages__item__description__item>span {
-    font-size: clamp(0.7rem, 1vw, 2rem);
+    font-size: clamp(0.8rem, 1vw, 2rem);
     text-align: start;
 }
 
@@ -872,6 +858,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2vw;
 }
 
 @media screen and (max-width: 800px) {
@@ -894,6 +881,7 @@ header {
 @media screen and (max-width: 800px) {
     .description__product__box__title {
         font-size: 1rem;
+        text-align: center;
     }
 }
 
@@ -918,6 +906,10 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 2vw;
+}
+
+.description__product__items__box__center{
+    width: 35%;
 }
 
 @media screen and (max-width: 800px) {
@@ -1003,13 +995,14 @@ header {
 }
 
 .description__product__item__text {
-    font-size: clamp(0.7rem, 1vw, 2rem);
+    font-size: clamp(0.8rem, 1vw, 2rem);
     text-align: center;
 }
 
 @media screen and (max-width: 800px) {
     .description__product__item__text {
-        font-size: 0.8rem;
+        font-size: 1.2rem;
+        font-weight: 600;
         position: relative;
         z-index: 3;
     }
@@ -1033,7 +1026,7 @@ header {
 
 @media screen and (max-width: 800px) {
     .description__product__wrapper__img {
-        height: 45vh;
+        height: 60vh;
     }
 }
 
@@ -1061,7 +1054,6 @@ header {
     color: #FFF;
     padding: 0.5vw 2vw;
     background-color: var(--accent-color);
-    cursor: pointer;
     transition: .4s;
 }
 
@@ -1073,23 +1065,33 @@ header {
 
 .description__product__btn:hover {
     box-shadow: 0px 0px 8px var(--accent-color);
-    text-shadow: 0px 0px 5px #FFF;
+    text-shadow: 0px 0px 3px #FFF;
 }
 
 .description__product__items__box .molecular__box {
     bottom: 23%;
 }
 
-@media screen and (max-width: 800px) {
-    .description__product__items__box .molecular__box__green {
-        bottom: 10%;
-        justify-content: center;
-        gap: 5%;
+@media (max-width: 800px) {
+    .description__product__items__box .molecular__box__green {   
+        width: 60%;
+        padding: 0 20%;
     }
 
     .description__product__items__box .molecular__box__green .molecular__right {
         transform: scaleX(-1) rotate(-10deg);
         top: -2vh;
+    }
+
+    .description__product__items__box .molecular__box{
+        bottom: 10%;
+    }
+}
+
+@media screen and (min-width: 800px){
+    .description__product__items__box .molecular__box__green {
+        width: 100%;
+        padding: 0;
     }
 }
 
@@ -1106,22 +1108,30 @@ header {
     background-image: url(./img/parallax_dog.png);
     background-repeat: no-repeat;
     background-position: bottom center;
-    background-size: 35% 35%;
+    background-size: auto 40vh;
 }
 
 @media screen and (max-width: 800px) {
     .parallax__dog__wrapper {
         justify-content: center;
         align-items: center;
-        background-size: 100% 45%;
+        background-size: 80% 30%;
     }
 }
 
-@media (min-width: 800px) and (max-width: 1000px) {
+/* @media (min-width: 800px) and (max-width: 1200px) {
     .parallax__dog__wrapper {
-        background-size: 50% 35%;
+        justify-content: center;
+        align-items: center;
+        background-size: 60% 35%;
     }
-}
+} */
+
+/* @media (min-width: 800px) and (max-width: 1800px) {
+    .parallax__dog__wrapper {
+        background-size: auto 40vh;
+    }
+} */
 
 
 /* ============================= DESCRIPTION PRODUCT ============================= */
@@ -1147,9 +1157,9 @@ header {
 }
 
 .items__api__control__block {
-    width: 30%;
+    width: 35%;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     text-align: center;
 }
 
@@ -1162,7 +1172,7 @@ header {
 }
 
 .items__api__control__name {
-    font-size: clamp(0.7rem, 1vw, 2rem);
+    font-size: clamp(0.8rem, 1vw, 2rem);
     font-weight: 600;
     padding: 0.5vw;
     background-color: #FFF;

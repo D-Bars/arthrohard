@@ -56,49 +56,88 @@ triggersMenuItems();
 
 // underline menu item
 
-const isMobile = window.innerWidth < 800;
+class ObserveSections {
+  constructor(sectionArray) {
+    this.sections = sectionArray;
 
-if (!isMobile) {
-  const sectionIds = ["advantages", "drug", "products"];
-  const sections = sectionIds
-    .map(id => document.getElementById(id))
-    .filter(Boolean);
+    this.menuContainer = document.querySelector('.header__menu__items__box');
+    this.menuItems = this.menuContainer.querySelectorAll('.hover__underline__trigger');
 
-  const sectionPositions = sections.map(section => {
-    const rect = section.getBoundingClientRect();
-    const top = rect.top + window.scrollY;
-    const bottom = top + rect.height;
-    return { id: section.getAttribute('id'), top, bottom };
-  });
+    this.sizeVaries = null;
 
-  const menuContainer = document.querySelector('.header__menu__items__box');
-  const menuItems = menuContainer.querySelectorAll('.hover__underline__trigger');
+    this.addResizeListener();
+    this.onScroll();
+  }
 
-  let currentActiveSectionId = null;
-
-  function onScroll() {
-    const scrollPos = window.scrollY;
-
-    for (const section of sectionPositions) {
-      if (scrollPos >= section.top - 150 && scrollPos < section.bottom - 150) {
-        if (section.id !== currentActiveSectionId) {
-          currentActiveSectionId = section.id;
-
-          menuItems.forEach(item => item.classList.remove('active__menu__link'));
-
-          const activeMenuItem = menuContainer.querySelector(`a[href="#${currentActiveSectionId}"]`)?.closest('.hover__underline__trigger');
-          if (activeMenuItem) {
-            activeMenuItem.classList.add('active__menu__link');
-          }
-        }
-        return;
-      }
+  getCurrentSection(sections, scrollY) {
+    const section = sections.find(section => scrollY >= section.top && scrollY < section.bottom);
+    if (section) {
+      return section.id;
+    } else {
+      return null;
     }
   }
 
-  window.addEventListener('scroll', onScroll);
-  onScroll();
+  getSectionsPosition() {
+    return this.sections.map(section => {
+      const rect = section.getBoundingClientRect();
+      const top = rect.top + window.scrollY - 400;
+      const bottom = top + rect.height;
+      return { id: section.getAttribute('id'), top, bottom };
+    });
+  }
+
+  setActive(sectionId) {
+    this.removeActive();
+    const activeMenuItem = this.menuContainer.querySelector(`a[href="#${sectionId}"]`)?.closest('.hover__underline__trigger');
+    if (activeMenuItem) {
+      activeMenuItem.classList.add('active__menu__link');
+    } else {
+      this.removeActive();
+    }
+  }
+
+  removeActive() {
+    this.menuItems.forEach(item => {
+      item.classList.remove('active__menu__link');
+    });
+  }
+
+  handlingSectionActivate() {
+    const sectionsPos = this.getSectionsPosition();
+    const currentTopPos = window.scrollY;
+    const currentSection = this.getCurrentSection(sectionsPos, currentTopPos);
+    if (currentSection) {
+      this.setActive(currentSection)
+    } else {
+      this.removeActive();
+    }
+  }
+
+  addResizeListener() {
+    window.addEventListener("resize", () => {
+      this.onResize();
+    });
+  }
+
+  onResize() {
+    clearTimeout(this.sizeVaries);
+    this.sizeVaries = setTimeout(() => {
+      this.handlingSectionActivate();
+    }, 500);
+  }
+
+  onScroll() {
+    window.addEventListener('scroll', () => {
+      this.handlingSectionActivate();
+    })
+  }
+
 }
+
+const sectionIds = ["advantages", "drug", "products"]
+const sectionArray = sectionIds.map(id => document.getElementById(id)).filter(Boolean)
+const sectionObserveObj = new ObserveSections(sectionArray);
 
 // API get products
 
