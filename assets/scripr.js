@@ -64,7 +64,9 @@ class ObserveSections {
     this.menuItems = this.menuContainer.querySelectorAll('.hover__underline__trigger');
 
     this.sizeVaries = null;
+    this.setActiveBlocker = false;
 
+    this.addListenerByClick();
     this.addResizeListener();
     this.onScroll();
   }
@@ -87,6 +89,21 @@ class ObserveSections {
     });
   }
 
+  addListenerByClick() {
+    this.menuItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        this.setActiveBlocker = true;
+        const sectionId = e.target.getAttribute('href').slice(1);
+        console.log(sectionId)
+        this.setActive(sectionId);
+        setTimeout(() => {
+          this.setActiveBlocker = false;
+          this.handlingSectionActivate();
+        }, 1000);
+      })
+    })
+  }
+
   setActive(sectionId) {
     this.removeActive();
     const activeMenuItem = this.menuContainer.querySelector(`a[href="#${sectionId}"]`)?.closest('.hover__underline__trigger');
@@ -104,6 +121,7 @@ class ObserveSections {
   }
 
   handlingSectionActivate() {
+    if(this.setActiveBlocker) return ;
     const sectionsPos = this.getSectionsPosition();
     const currentTopPos = window.scrollY;
     const currentSection = this.getCurrentSection(sectionsPos, currentTopPos);
@@ -132,7 +150,6 @@ class ObserveSections {
       this.handlingSectionActivate();
     })
   }
-
 }
 
 const sectionIds = ["advantages", "drug", "products"]
