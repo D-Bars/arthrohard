@@ -40,7 +40,7 @@ class ModalWindow {
 
   modalHide() {
     this.modalWrapper.style.transition = 'top 0.5s ease';
-    this.modalWrapper.style.top = '-100vh';
+    this.modalWrapper.style.top = '-150vh';
   }
 }
 
